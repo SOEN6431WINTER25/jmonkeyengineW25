@@ -32,7 +32,6 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements OnItemClickListener, View.OnClickListener, TextWatcher {
     private static final String TAG = "MainActivity";
-    private static final String SKIPPING_CLASS_MESSAGE = "Skipping Class "; // Defined constant
 
     /**
      * Static String to pass the key for the selected test app to the
@@ -267,14 +266,14 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             /* check to see if the class contains any of the exclusion strings */
             for (int i = 0; i < exclusions.size(); i++) {
                 if (className.contains(exclusions.get(i))) {
-                    Log.d(TAG, SKIPPING_CLASS_MESSAGE + className + ". Includes exclusion string: " + exclusions.get(i) + ".");
+                    Log.d(TAG, "Skipping Class " + className + ". Includes exclusion string: " + exclusions.get(i) + ".");
                     include = false;
                     break;
                 }
             }
         } else {
             include = false;
-            Log.d(TAG, SKIPPING_CLASS_MESSAGE + className + ". Not in the root package: " + rootPackage + ".");
+            Log.d(TAG, "Skipping Class " + className + ". Not in the root package: " + rootPackage + ".");
         }
         return include;
     }
@@ -292,15 +291,15 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 Log.d(TAG, "Class " + className + " is a jME Application");
             } else {
                 include = false;
-                Log.d(TAG, SKIPPING_CLASS_MESSAGE + className + ". Not a jME Application");
+                Log.d(TAG, "Skipping Class " + className + ". Not a jME Application");
             }
 
         } catch (NoClassDefFoundError ncdf) {
             include = false;
-            Log.d(TAG, SKIPPING_CLASS_MESSAGE + className + ". No Class Def found.");
+            Log.d(TAG, "Skipping Class " + className + ". No Class Def found.");
         } catch (ClassNotFoundException cnfe) {
             include = false;
-            Log.d(TAG, SKIPPING_CLASS_MESSAGE + className + ". Class not found.");
+            Log.d(TAG, "Skipping Class " + className + ". Class not found.");
         }
         return include;
     }
